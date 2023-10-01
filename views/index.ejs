@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Jua&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="header">
+      <div class="title">DigiDraw <div style="margin-left: 1rem;"> <i class="fa-solid fa-pencil fa-lg" style="color: #ffffff; "></i></div></h1>
+      <div class="download"> 
+        <div class="export-button" onclick="exportAsPNG()"><i class="fa-solid fa-download fa-sm" style="color: #ffffff;"></i> </div>
+
+      </div>
+     </div>
+    </div>
+
+    <div class="flex-container">
+      <div>
+        <canvas id="sheet" width="1700" height="750"></canvas>
+      </div>
+    </div>
+
+    <div class="color-choice">
+      <div>
+        <button
+          class="round-button red selected"
+          onclick="selectColor('red')"
+        ></button>
+      </div>
+
+
+      <div>
+        <button
+          class="round-button green"
+          onclick="selectColor('green')"
+        ></button>
+      </div>
+
+
+      <div>
+        <button
+          class="round-button blue"
+          onclick="selectColor('blue')"
+        ></button>
+      </div>
+
+      <div>
+        <button
+          class="round-button pink"
+          onclick="selectColor('pink')"
+        ></button>
+      </div>
+
+      <div>
+        <button
+          class="round-button yellow"
+          onclick="selectColor('yellow')"
+        ></button>
+      </div>
+
+      <div>
+        <button
+          class="round-button purple"
+          onclick="selectColor('purple')"
+        ></button>
+      </div>
+        <div>
+          <button
+            class="round-button cyan"
+            onclick="selectColor('cyan')"
+          ></button>
+        </div>
+        <div>
+          <button
+            class="round-button orange"
+            onclick="selectColor('orange')"
+          ></button>
+        </div>
+  
+      </div>
+    </div>
+    
+   
+    <div class="color-container">
+      <button onclick="changeBackgroundPattern('blank')" id="resetCanvasButton">Default</button>
+      <button onclick="changeBackgroundPattern('dots')" class="button-89">Dots</button>
+      <button onclick="changeBackgroundPattern('paper')" class="button-89">Grid Paper</button>
+      <button onclick="changeBackgroundPattern('line')" class="button-89">line</button>
+      <button onclick="changeBackgroundPattern('grid')" class="button-89">Grid</button>
+      <button onclick="changeBackgroundPattern('paperTexture')" class="button-89">
+        Paper texture
+      </button>
+    </div>
+
+  
+
+    <script>
+      
+      // Function to export canvas as PNG and provide a download link
+      function exportAsPNG() {
+        const canvas = document.getElementById("sheet");
+        const link = document.createElement("a");
+        link.href = canvas.toDataURL("image/png");
+        link.download = "drawing.png";
+        link.click();
+      }
+
+      function resetCanvas() {
+      const canvas = document.getElementById("sheet");
+      const context = canvas.getContext("2d");
+
+      // Clear the canvas by filling it with black color
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.fillStyle = "white";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+      // Add a click event listener to the button
+      const resetButton = document.getElementById("resetCanvasButton");
+      resetButton.addEventListener("click", resetCanvas);
+
+
+        const contentContainer = document.getElementById("sheet");
+        if (option === "dots") {
+          contentContainer.style.backgroundColor = "black";
+          contentContainer.style.opacity = "1";
+          contentContainer.style.backgroundImage =
+            "radial-gradient(#000000 0.65px, transparent 0.65px), radial-gradient(#000000 0.65px, #ffffff 0.65px)";
+          contentContainer.style.backgroundSize = "54px 54px";
+          contentContainer.style.backgroundPosition = "0 0, 27px 27px";
+        } else if (option === "blank") {
+          contentContainer.style.backgroundColor = "#ffffff";
+          contentContainer.style.backgroundImage="none"
+        } else if (option === "paper") {
+          contentContainer.style.backgroundColor = "#ffffff";
+          contentContainer.style.opacity = "1";
+          contentContainer.style.backgroundImage =
+            "linear-gradient(#000000 4px, transparent 4px), linear-gradient(90deg, #000000 4px, transparent 4px), linear-gradient(#000000 2px, transparent 2px), linear-gradient(90deg, #000000 2px, #ffffff 2px)";
+          contentContainer.style.backgroundSize =
+            "100px 100px, 100px 100px, 20px 20px, 20px 20px";
+          contentContainer.style.backgroundPosition =
+            "-4px -4px, -4px -4px, -2px -2px, -2px -2px";
+        } else if (option === "line") {
+          contentContainer.style.backgroundColor = "#ffffff";
+          contentContainer.style.opacity = "1";
+          contentContainer.style.backgroundImage =
+            " repeating-linear-gradient(0deg, #000000, #000000 1px, #ffffff 1px, #ffffff)";
+          contentContainer.style.backgroundSize = "20px 20px";
+        } else if (option === "grid") {
+          contentContainer.style.backgroundColor = "#ffffff";
+          contentContainer.style.opacity = "1";
+          contentContainer.style.backgroundImage =
+            " linear-gradient(#000000 1.3px, transparent 1.3px), linear-gradient(to right, #000000 1.3px, #ffffff 1.3px)";
+          contentContainer.style.backgroundSize = "26px 26px";
+        } else if (option === "paperTexture") {
+          contentContainer.style.backgroundColor = "#ffeee0";
+          contentContainer.style.backgroundImage =
+            'url("https://www.transparenttextures.com/patterns/textured-paper.png")';
+          contentContainer.style.backgroundSize = "auto";
+        }
+      
+    </script>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <script src="/javascripts/draw.js"></script>
+  <script src="https://kit.fontawesome.com/4737a162b6.js" crossorigin="anonymous"></script>
+</html>
