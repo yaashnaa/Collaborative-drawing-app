@@ -66,18 +66,23 @@ margin-bottom: 2rem;
 
 .pink{
   background-color: pink;
+  border: 1px solid rgb(164, 123, 130);
 }
 .purple{
   background-color: #9033FF;
+  border: 1px solid #581da0;
 }
 .orange{
   background-color: #FF9633;
+  border: 1px solid #a66120;
 }
 .cyan{
   background-color: #33ECFF;
+  border: 1px solid #2199a7;
 }
 .yellow{
   background-color: #FFF633;
+  border: 1px solid #b9b229;
 }
 
 .color-choice{

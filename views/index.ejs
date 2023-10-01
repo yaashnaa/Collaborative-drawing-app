@@ -126,7 +126,7 @@
       const resetButton = document.getElementById("resetCanvasButton");
       resetButton.addEventListener("click", resetCanvas);
 
-
+      function changeBackgroundPattern(option) {
         const contentContainer = document.getElementById("sheet");
         const hasPattern = contentContainer.style.backgroundImage !== "none";
         if (option === "dots") {
@@ -166,6 +166,7 @@
             'url("https://www.transparenttextures.com/patterns/textured-paper.png")';
           contentContainer.style.backgroundSize = "auto";
         }
+      }
       
     </script>
   </body>
