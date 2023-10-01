@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="font-size: 12px;">
   <head>
     <title><%= title %></title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
@@ -88,7 +88,7 @@
     
    
     <div class="color-container">
-      <button onclick="changeBackgroundPattern('blank')" id="resetCanvasButton">Default</button>
+      <button onclick="changeBackgroundPattern('blank')" id="resetCanvasButton">Clear drawing</button>
       <button onclick="changeBackgroundPattern('dots')" class="button-89">Dots</button>
       <button onclick="changeBackgroundPattern('paper')" class="button-89">Grid Paper</button>
       <button onclick="changeBackgroundPattern('line')" class="button-89">line</button>
@@ -96,6 +96,7 @@
       <button onclick="changeBackgroundPattern('paperTexture')" class="button-89">
         Paper texture
       </button>
+      <button onclick="changeBackgroundPattern('none')" class="button-89">No background</button>
     </div>
 
   
@@ -112,21 +113,22 @@
       }
 
       function resetCanvas() {
-      const canvas = document.getElementById("sheet");
-      const context = canvas.getContext("2d");
+  const canvas = document.getElementById("sheet");
+  const context = canvas.getContext("2d");
 
-      // Clear the canvas by filling it with black color
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.fillStyle = "white";
-      context.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
+  // Clear the canvas by filling it with the new background color
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // Set the new background color
+  canvas.style.backgroundColor = 'white';
+}
       // Add a click event listener to the button
       const resetButton = document.getElementById("resetCanvasButton");
       resetButton.addEventListener("click", resetCanvas);
 
 
         const contentContainer = document.getElementById("sheet");
+        const hasPattern = contentContainer.style.backgroundImage !== "none";
         if (option === "dots") {
           contentContainer.style.backgroundColor = "black";
           contentContainer.style.opacity = "1";
